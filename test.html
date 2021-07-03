@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<script type="text/javascript">
+    var log1 = [];
+    var log2 = [];
+    var timestamp = new Date();
+    var resstatus = true;
+    function rand(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    function moverand() {
+        if ((log1.length % 20 == 0) && (log1.length > 0) && (resstatus == true)) {
+            var obj = document.getElementById("btn1");
+            log2.push(new Date - timestamp);
+            console.log(log1);
+            console.log(log2);
+            var wait = document.getElementById("waiter");
+            var thx = document.getElementById("sugo");
+            if (log1.length < 40) {
+                wait.style.display = "block";
+                obj.style.display = "none";
+                resstatus = false;
+                setTimeout(function(){
+                    var obj = document.getElementById("btn1");
+                    var ranx = rand(0, 700);
+                    var rany = rand(0, 700);
+                    var rans = rand(30, 300);
+                    obj.style.left = ranx + 'px';
+                    obj.style.top = rany + 'px';
+                    obj.style.width = rans + 'px';
+                    obj.style.height = rans + 'px';
+                    wait.style.display = "none";
+                    obj.style.display = "block";
+                    resstatus = false;
+                }, 10000)
+            } else {
+                document.getElementById("data1").innerHTML = log1;
+                document.getElementById("data2").innerHTML = log2;
+                thx.style.display = "block";
+                obj.style.display = "none";
+            }
+        } else {
+            var obj = document.getElementById("btn1");
+            //다음 오브젝트 이동 준비
+            var ranx = rand(0, 500);
+            var rany = rand(0, 500);
+            var rans = rand(50, 250);
+            
+            if (resstatus == true) {
+                //타임스탬프 찍기
+                if (log1.length % 20 > 0) {
+                    log2.push(new Date - timestamp);
+                }
+                timestamp = new Date();
+                log1.push([ranx - obj.style.left.split("p")[0], rany - obj.style.top.split("p")[0], obj.style.width]);
+                console.log(log1);
+                console.log(log2);
+
+            } else {
+                resstatus = true;
+                timestamp = new Date();
+                log1.push([ranx - obj.style.left.split("p")[0], rany - obj.style.top.split("p")[0], obj.style.width]);
+                console.log(log1);
+                console.log(log2);
+            }
+            //다음 오브젝트 이동
+            obj.style.left = ranx + 'px';
+            obj.style.top = rany + 'px';
+            obj.style.width = rans + 'px';
+            obj.style.height = rans + 'px';
+            console.log("Moved");
+        }
+    }
+</script>
+
+<body>
+    <div id="btn1" style="width:100px;height:100px;background-color:blue;position:absolute;" onclick="moverand()">
+        
+    </div>
+    <div id="sugo" style="display: none;">
+        <h1>실험이 모두 끝났습니다. 참가해주셔서 감사합니다. 아래의 데이터를 복사해서 저에게 전달해 주세요.</h1>
+        <div id="data1"></div>
+        <div id="data2"></div>
+    </div>
+    <div id="waiter" style="display: none;">
+        <h1>10초의 쉬는 시간을 드립니다. 파란 박스가 나타나면 다시 진행해 주세요.</h1>
+    </div>
+</body>
+
+
