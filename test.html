@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 
 <script type="text/javascript">
-    var log1 = [];
+    var logx = [];
+    var logy = [];
+    var logm = [];
     var log2 = [];
     var timestamp = new Date();
     var resstatus = true;
@@ -12,22 +14,22 @@
     }
 
     function moverand() {
-        if ((log1.length % 20 == 0) && (log1.length > 0) && (resstatus == true)) {
+        if ((logx.length % 20 == 0) && (logx.length > 0) && (resstatus == true)) {
             var obj = document.getElementById("btn1");
             log2.push(new Date - timestamp);
-            console.log(log1);
             console.log(log2);
             var wait = document.getElementById("waiter");
             var thx = document.getElementById("sugo");
-            if (log1.length < 40) {
+            if (logx.length < 80) {
                 wait.style.display = "block";
                 obj.style.display = "none";
+                obj.style.borderRadius = 0 + 'px';
                 resstatus = false;
                 setTimeout(function(){
                     var obj = document.getElementById("btn1");
-                    var ranx = rand(0, 700);
-                    var rany = rand(0, 700);
-                    var rans = rand(30, 300);
+                    var ranx = rand(0, 1280);
+                    var rany = rand(0, 1000);
+                    var rans = rand(10, 500);
                     obj.style.left = ranx + 'px';
                     obj.style.top = rany + 'px';
                     obj.style.width = rans + 'px';
@@ -37,8 +39,10 @@
                     resstatus = false;
                 }, 10000)
             } else {
-                document.getElementById("data1").innerHTML = log1;
-                document.getElementById("data2").innerHTML = log2;
+                document.getElementById("data1").innerHTML = logx;
+                document.getElementById("data2").innerHTML = logy;
+                document.getElementById("data3").innerHTML = logm;
+                document.getElementById("data4").innerHTML = log2;
                 thx.style.display = "block";
                 obj.style.display = "none";
             }
@@ -51,26 +55,28 @@
             
             if (resstatus == true) {
                 //타임스탬프 찍기
-                if (log1.length % 20 > 0) {
+                if (logx.length % 20 > 0) {
                     log2.push(new Date - timestamp);
                 }
                 timestamp = new Date();
-                log1.push([ranx - obj.style.left.split("p")[0], rany - obj.style.top.split("p")[0], obj.style.width]);
-                console.log(log1);
+                logx.push(ranx - obj.style.left.split("p")[0]);
+                logy.push(rany - obj.style.top.split("p")[0])
+                logm.push(obj.style.width)
                 console.log(log2);
 
             } else {
                 resstatus = true;
                 timestamp = new Date();
-                log1.push([ranx - obj.style.left.split("p")[0], rany - obj.style.top.split("p")[0], obj.style.width]);
-                console.log(log1);
-                console.log(log2);
+                logx.push(ranx - obj.style.left.split("p")[0]);
+                logy.push(rany - obj.style.top.split("p")[0])
+                logm.push(obj.style.width)
             }
             //다음 오브젝트 이동
             obj.style.left = ranx + 'px';
             obj.style.top = rany + 'px';
             obj.style.width = rans + 'px';
             obj.style.height = rans + 'px';
+            obj.style.borderRadius = rans * 0.75 + 'px';
             console.log("Moved");
         }
     }
@@ -84,6 +90,8 @@
         <h1>실험이 모두 끝났습니다. 참가해주셔서 감사합니다. 아래의 데이터를 복사해서 저에게 전달해 주세요.</h1>
         <div id="data1"></div>
         <div id="data2"></div>
+        <div id="data3"></div>
+        <div id="data4"></div>
     </div>
     <div id="waiter" style="display: none;">
         <h1>10초의 쉬는 시간을 드립니다. 파란 박스가 나타나면 다시 진행해 주세요.</h1>
