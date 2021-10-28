@@ -1,13 +1,13 @@
 @font-face {
   font-family: 'DungGeunMo';
-  src: url(/fonts/DungGeunMo.woff);
+  src: url(/static/DungGeunMo.woff);
   font-style: normal;
   font-weight: 700;
 }
 
 @font-face {
   font-family: 'PixelMplus12';
-  src: url(/fonts/PixelMplus12.woff);
+  src: url(/static/PixelMplus12.woff);
   font-style: normal;
   font-weight: 700;
 }
