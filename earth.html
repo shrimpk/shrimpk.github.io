@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <style>
+  @font-face{
+     font-family : 'DungGeunMo';
+     src: '/fonts/DungGeunMo.woff';
+  }
+  </style>
+  <link rel="stylesheet" href="master.css">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="secondary">
+        별의 물리량 계산
+    </div>
+    <div class="primary">
+        20711 김민준
+    </div>
+    <link rel="stylesheet" href="master.css">
+    <div class="wrapper">
+        <div class="group">
+            <h3>물리량 입력</h3>
+            <div class="padding primary">
+                L_A/L_B
+                <input type="text" id="factor_l" class="secondary">
+            </div>
+            <a class="button secondary" onclick="calc_l()">광도 계산</a>
+            <div class="padding primary">
+                R_A/R_B
+                <input type="text" id="factor_r" class="secondary">
+            </div>
+            <a class="button secondary" onclick="calc_r()">반지름 계산</a>
+            <div class="padding primary">
+                T_A/T_B
+                <input type="text" id="factor_t" class="secondary">
+            </div>
+            <a class="button secondary" onclick="calc_l()">표면온도 계산</a>
+
+        </div>
+    </div>
+  </body>
+</html>
+
+
+<script>
+function calc_l() {
+    var factor_l = document.getElementById("factor_l").value;
+    var factor_r = document.getElementById("factor_r").value;
+    var factor_t = document.getElementById("factor_t").value;
+    console.log(factor_t)
+    document.getElementById("factor_l").value = (factor_r ** 2) * (factor_t ** 4)
+}
+
+function calc_r() {
+    var factor_l = document.getElementById("factor_l").value;
+    var factor_r = document.getElementById("factor_r").value;
+    var factor_t = document.getElementById("factor_t").value;
+    console.log(factor_t)
+    document.getElementById("factor_r").value = (factor_l / (factor_t ** 4)) ** 0.5
+}
+
+function calc_t() {
+    var factor_l = document.getElementById("factor_l").value;
+    var factor_r = document.getElementById("factor_r").value;
+    var factor_t = document.getElementById("factor_t").value;
+    console.log(factor_t)
+    document.getElementById("factor_l").value = (factor_r ** 2) * (factor_t ** 4)
+}
+</script>
